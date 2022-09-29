@@ -1,0 +1,57 @@
+@import 'normalize.css';
+
+:root {
+    --white: #fff;
+    --black: #000;
+    --font-family: 'Roboto';
+    --main-color: #b84592;
+    --l-gray: lightgray;
+    // Default width
+    --default-layout-width: 1150px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-size: 1.4rem;
+    color: var(--black);
+    line-height: 1.5;
+    font-family: var(--font-family);
+    text-rendering: optimizespeed;
+    overflow-y: overlay;
+}
+
+// Scrollbar CSS
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+button,
+input,
+[tabindex] {
+    outline: none;
+    border: none;
+}
+
+a {
+    color: currentColor;
+    text-decoration: none;
+}
+
+// Fonts emmbeded

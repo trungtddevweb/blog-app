@@ -1,0 +1,144 @@
+.wrapper {
+    height: 100vh;
+    background: url('../../assets/imgs/backgroundLogin.jpg');
+}
+
+.container {
+    height: 100%;
+    background-color: rgba(14, 14, 14, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error {
+    font-size: 1.2rem;
+    text-align: center;
+    color: rgb(226, 156, 156);
+}
+
+.form {
+    h3 {
+        color: var(--white);
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    width: 400px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: rgba(14, 14, 14, 0.2);
+    padding: 20px 30px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 2px;
+    padding: 4px 10px;
+    gap: 10px;
+    border: 1px solid transparent;
+
+    &:focus-within {
+        border-color: blue;
+
+    }
+}
+
+.input {
+    font-size: 1rem;
+    width: 100%;
+    height: 100%;
+
+
+}
+
+
+
+.text,
+.text-with {
+    font-size: 0.9rem;
+    color: var(--white);
+}
+
+.text-with {
+    text-align: center;
+}
+
+.btn-login {
+    background-color: var(--white);
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: var(--main-color);
+    transition: all ease-in-out .3s;
+
+    &:hover {
+        color: var(--white);
+        background-color: var(--main-color);
+    }
+}
+
+.social-login {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+
+
+}
+
+
+
+.col {
+    width: 50%;
+    background-color: #1877f2;
+    padding: 4px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: var(--white);
+    transition: linear, .3s;
+
+
+    i {
+        margin-top: 4px;
+        margin-right: 4px;
+    }
+
+    &:nth-child(2) {
+        background-color: #e1306c;
+    }
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.link {
+    color: var(--main-color);
+    text-decoration: underline;
+}
+
+// Responsive
+@media only screen and (max-width: 480px) {
+    .wrapper {
+        height: 100vh;
+        background: url('../../assets/imgs/mobileBackgroundLogin.jpg');
+        background-size: cover;
+    }
+
+    .container {
+
+        padding: 20px;
+    }
+}
