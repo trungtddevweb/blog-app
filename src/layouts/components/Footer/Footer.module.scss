@@ -1,0 +1,25 @@
+.wrapper {
+    background-color: var(--l-gray);
+}
+
+.container {
+    font-size: 1rem;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.item {
+    font-size: 1.1rem;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    min-width: 0;
+}

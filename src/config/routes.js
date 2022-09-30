@@ -3,7 +3,7 @@ const routes = {
     login: '/login',
     register: '/register',
     search: '/search',
-    single: '/single',
+    single: '/post/:id',
     write: '/write',
 };
 

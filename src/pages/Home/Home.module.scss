@@ -1,0 +1,22 @@
+.wrapper {
+    margin-top: 50px;
+}
+
+.list-post {
+    display: flex;
+    flex-direction: column;
+}
+
+.post {
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+    background-color: rgba(209, 200, 205, 0.2);
+    margin: 50px 0;
+    padding: 10px;
+    font-size: 1.2rem;
+
+    &:nth-child(2n+1) {
+        flex-direction: row-reverse;
+    }
+}
