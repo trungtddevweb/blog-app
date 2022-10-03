@@ -1,0 +1,121 @@
+.wrapper {
+    display: flex;
+    height: calc(100vh - 130px);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.heading {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.input-title {
+    border: 1px solid var(--l-gray);
+    padding: 10px;
+    font-size: 1.2rem;
+
+    &:focus {
+        border-color: blue;
+    }
+}
+
+.edit-container {
+    height: 400px;
+    overflow: auto;
+}
+
+.editor {
+    font-size: 1.2rem;
+    height: 350px;
+    border: none;
+
+    P {
+        font-size: 1.2rem;
+    }
+}
+
+
+
+.menu {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.item {
+    font-size: 1.2rem;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+}
+
+.wrapper-item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: var(--main-color);
+    font-size: 1.1rem;
+}
+
+
+.choose-file {
+    display: none;
+}
+
+.status {
+    font-size: 1rem;
+}
+
+.text-choose {
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 1rem;
+    color: blue;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all ease-in-out .3s;
+
+    &:first-child {
+        border: 1px solid var(--main-color);
+        color: var(--main-color);
+        background-color: var(--white);
+
+        &:hover {
+            color: var(--white);
+            background-color: var(--main-color);
+        }
+    }
+
+    &:last-child {
+        color: var(--white);
+        background-color: var(--main-color);
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+}

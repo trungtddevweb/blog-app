@@ -10,6 +10,9 @@
 
 .content {
     flex: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .menu {
@@ -26,8 +29,16 @@
 .user {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
 }
+
+.section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 
 .info {
     font-size: 0.9rem;
@@ -43,4 +54,19 @@
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+
+.heading {
+    font-size: 1.4rem;
+}
+
+.content-text {
+    font-size: var(--fz-normal);
+    text-align: justify;
+    line-height: 2rem;
 }
