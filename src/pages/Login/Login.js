@@ -4,40 +4,54 @@ import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 import Button from '~/components/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import config from '~/config';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import axios from 'axios';
+import { AuthContext } from '~/context/authContext';
 
 const cx = classNames.bind(styles);
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
+    const [inputs, setInputs] = useState({
+        username: '',
+        password: '',
+    });
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
+    const { currentUser, login } = useContext(AuthContext);
+    console.log(currentUser);
     // Handle the login
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
+    const handleChange = (e) => {
+        setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await login(inputs);
+            navigate('/');
+        } catch (error) {
+            setError(error.response.data);
+        }
     };
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
-                <form className={cx('form')} method="POST">
+                <form className={cx('form')}>
                     <h3 children={cx('title')}>Đăng nhập</h3>
-                    {/* <p className={cx('error')}>Sai tên đăng nhập hoặc mật khẩu! </p> */}
+                    {error && <div className={cx('error')}>{error}</div>}
+                    <p className={cx('error')}></p>
                     <div className={cx('row')}>
                         <i>
                             <FontAwesomeIcon icon={faUser} />
                         </i>
                         <input
-                            onChange={handleEmail}
+                            onChange={handleChange}
                             className={cx('input')}
-                            type="email"
+                            type="text"
                             required
-                            placeholder="Email"
-                            value={email}
+                            placeholder="Username"
+                            name="username"
                         />
                     </div>
                     <div className={cx('row')}>
@@ -45,15 +59,18 @@ const Login = () => {
                             <FontAwesomeIcon icon={faLock} />
                         </i>
                         <input
-                            onChange={handlePassword}
+                            name="password"
+                            onChange={handleChange}
                             className={cx('input')}
                             type="password"
+                            required
                             placeholder="Password"
-                            value={password}
                         />
                     </div>
                     <p className={cx('text')}>Quên mật khẩu?</p>
-                    <Button className={cx('btn-login')}>Đăng nhập</Button>
+                    <Button className={cx('btn-login')} onClick={handleSubmit}>
+                        Đăng nhập
+                    </Button>
                     <p className={cx('text-with')}>Hoặc đăng nhập với</p>
                     <div className={cx('social-login')}>
                         <div className={cx('col')}>

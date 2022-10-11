@@ -1,39 +1,88 @@
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import classNames from 'classnames/bind';
+import styles from './Register.module.scss';
+import Button from '~/components/Button';
 import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FaFacebookF, FaInstagram } from 'react-icons/fa';
-import classNames from 'classnames/bind';
-import Button from '~/components/Button';
-import styles from './Register.module.scss';
-import { Link } from 'react-router-dom';
 import config from '~/config';
+import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
 const Register = () => {
+    // State
+    const [error, setError] = useState(null);
+    const [inputs, setInputs] = useState({
+        username: '',
+        email: '',
+        password: '',
+    });
+    const navigate = useNavigate();
+    // Hanlder
+    const handleChange = (e) => {
+        setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post('/auth/register', inputs);
+            navigate('/login');
+        } catch (err) {
+            setError(err.response.data);
+        }
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
                 <form className={cx('form')}>
                     <h3 children={cx('title')}>Đăng ký</h3>
+                    {error && <span className={cx('error')}>{error}</span>}
                     <div className={cx('row')}>
                         <i>
                             <FontAwesomeIcon icon={faUser} />
                         </i>
-                        <input className={cx('input')} type="text" required placeholder="Name" />
+                        <input
+                            className={cx('input')}
+                            type="text"
+                            required={true}
+                            placeholder="Name"
+                            name="username"
+                            onChange={handleChange}
+                        />
                     </div>
                     <div className={cx('row')}>
                         <i>
                             <FontAwesomeIcon icon={faEnvelope} />
                         </i>
-                        <input className={cx('input')} type="email" required placeholder="Email" />
+                        <input
+                            className={cx('input')}
+                            type="email"
+                            required={true}
+                            placeholder="Email"
+                            name="email"
+                            onChange={handleChange}
+                        />
                     </div>
                     <div className={cx('row')}>
                         <i>
                             <FontAwesomeIcon icon={faLock} />
                         </i>
-                        <input className={cx('input')} type="password" placeholder="Password" />
+                        <input
+                            className={cx('input')}
+                            type="password"
+                            required={true}
+                            placeholder="Password"
+                            name="password"
+                            onChange={handleChange}
+                        />
                     </div>
-                    <Button className={cx('btn-login')}>Đăng ký</Button>
+                    <Button onClick={handleSubmit} className={cx('btn-login')}>
+                        Đăng ký
+                    </Button>
                     <p className={cx('text-with')}>Hoặc đăng ký với</p>
                     <div className={cx('social-login')}>
                         <div className={cx('col')}>

@@ -9,11 +9,14 @@ import Tippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { useContext } from 'react';
+import { AuthContext } from '~/context/authContext';
 
 const cx = classNames.bind(styles);
 
 const Header = () => {
-    const user = true;
+    const { currentUser, logout } = useContext(AuthContext);
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -44,7 +47,7 @@ const Header = () => {
                     <div className={cx('item')}>
                         <Button to={`/?cat=sad`}>SAD</Button>
                     </div>
-                    {user ? (
+                    {currentUser ? (
                         <Tippy
                             interactive
                             placement="bottom-end"
@@ -58,6 +61,7 @@ const Header = () => {
                                         <Button
                                             rightIcon={<FontAwesomeIcon icon={faRightFromBracket} />}
                                             className={cx('log-out')}
+                                            onClick={logout}
                                         >
                                             Log out
                                         </Button>
@@ -65,13 +69,13 @@ const Header = () => {
                                 </div>
                             )}
                         >
-                            <div className={cx('item', { user })}>
+                            <div className={cx('item', { currentUser })}>
                                 <img
                                     alt="Trung"
                                     className={cx('avt')}
                                     src={'https://i.pinimg.com/564x/61/10/f0/6110f0d1c68fc446d9d7210c82caa9c6.jpg'}
                                 />
-                                <span>Trung</span>
+                                <span>{currentUser.username}</span>
                             </div>
                         </Tippy>
                     ) : (

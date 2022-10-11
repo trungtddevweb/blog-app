@@ -62,7 +62,7 @@
     }
 }
 
-.user {
+.currentUser {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -78,4 +78,5 @@
     height: 30px;
     object-fit: cover;
     border-radius: 50%;
+    margin-right: 8px;
 }
