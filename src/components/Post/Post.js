@@ -3,32 +3,30 @@ import styles from './Post.module.scss';
 import classNames from 'classnames/bind';
 import Image from '../Image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarDays, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import Button from '../Button';
+import moment from 'moment';
+import { getText } from '~/untils/getText';
 
 const cx = classNames.bind(styles);
 
 const Post = ({ post }) => {
     return (
         <>
-            <Image src={post.src} alt={post.title} className={cx('img')} />
+            <Image src={`./upload/${post.img}`} alt={post.title} className={cx('img')} />
             <div className={cx('content')}>
                 <h3 className={cx('heading')}>{post.title}</h3>
-                <p className={cx('excerpt')}>{post.content}</p>
+                <p className={cx('desc')}>{getText(post.desc)}</p>
                 <div className={cx('author')}>
                     <div className={cx('cate')}>
                         <div className={cx('col')}>
                             <span>Category: </span>
-                            <span className={cx('category')}>{post.category}</span>
+                            <span className={cx('category')}>{post.cat}</span>
                         </div>
                         <div className={cx('col')}>
                             <FontAwesomeIcon color="orange" icon={faCalendarDays} />
-                            <span className={cx('text')}>{post.createdAt}</span>
+                            <span className={cx('text')}>{moment(post.date).fromNow()}</span>
                         </div>
-                    </div>
-                    <div className={cx('user')}>
-                        <FontAwesomeIcon color="gray" icon={faUser} />
-                        <span className={cx('text')}>{post.author}</span>
                     </div>
                 </div>
                 <Button className={cx('btn')} to={`/post/${post.id}`}>

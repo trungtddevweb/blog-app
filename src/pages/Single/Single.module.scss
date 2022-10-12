@@ -26,6 +26,8 @@
     object-fit: cover;
 }
 
+
+
 .user {
     display: flex;
     align-items: center;
@@ -60,9 +62,15 @@
     cursor: pointer;
 }
 
+.desc {
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
 
 .heading {
     font-size: 1.4rem;
+    border-bottom: 1px solid #000;
 }
 
 .content-text {

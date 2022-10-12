@@ -7,7 +7,6 @@ import Button from '~/components/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import config from '~/config';
 import { useContext, useState } from 'react';
-import axios from 'axios';
 import { AuthContext } from '~/context/authContext';
 
 const cx = classNames.bind(styles);
@@ -19,8 +18,7 @@ const Login = () => {
     });
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const { currentUser, login } = useContext(AuthContext);
-    console.log(currentUser);
+    const { login } = useContext(AuthContext);
     // Handle the login
     const handleChange = (e) => {
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
