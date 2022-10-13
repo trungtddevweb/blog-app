@@ -14,6 +14,7 @@ import DOMPurify from 'dompurify';
 const cx = classNames.bind(styles);
 
 const Single = () => {
+    const [loading, setLoading] = useState(false);
     const [post, setPost] = useState({});
     const { currentUser } = useContext(AuthContext);
     const location = useLocation();
@@ -22,9 +23,11 @@ const Single = () => {
 
     useEffect(() => {
         const fetchPosts = async () => {
+            setLoading(true);
             try {
                 const res = await axios.get(`/posts/${postId}`);
                 setPost(res.data);
+                setLoading(false);
             } catch (err) {
                 console.log(err);
             }
@@ -40,6 +43,20 @@ const Single = () => {
             console.log(error);
         }
     };
+
+    if (loading) {
+        return (
+            <div className={cx('wrapper-animation')}>
+                <div className={cx('loadingio-spinner-dual-ball-3f6tj67ctil')}>
+                    <div className={cx('ldio-be45kgc28r4')}>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>

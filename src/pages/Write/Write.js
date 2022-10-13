@@ -1,12 +1,13 @@
 import styles from './Write.module.scss';
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Button from '~/components/Button';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment';
+import { AuthContext } from '~/context/authContext';
 
 const cx = classNames.bind(styles);
 
@@ -16,8 +17,16 @@ const Write = () => {
     const [title, setTitle] = useState(state?.title || '');
     const [file, setFile] = useState(null);
     const [cat, setCat] = useState(state?.cate || '');
+
     const navigate = useNavigate();
 
+    //Check user
+    const { currentUser } = useContext(AuthContext);
+    useEffect(() => {
+        if (!currentUser) return navigate('/login');
+    }, [currentUser, navigate]);
+
+    // Handle
     const upload = async () => {
         try {
             const formData = new FormData();
@@ -53,7 +62,10 @@ const Write = () => {
             console.log(err);
         }
     };
-    console.log(value);
+    // Handle Category
+    const handleCate = (e) => {
+        setCat(e.target.value);
+    };
     return (
         <div className={cx('wrapper')}>
             <div className={cx('content')}>
@@ -102,7 +114,7 @@ const Write = () => {
                             type="radio"
                             name="cat"
                             value="art"
-                            onChange={(e) => setCat(e.target.value)}
+                            onChange={handleCate}
                         />
                         <label htmlFor="art">Art</label>
                     </div>
@@ -113,7 +125,7 @@ const Write = () => {
                             type="radio"
                             name="cat"
                             value="music"
-                            onChange={(e) => setCat(e.target.value)}
+                            onChange={handleCate}
                         />
                         <label htmlFor="music">Music</label>
                     </div>
@@ -124,7 +136,7 @@ const Write = () => {
                             type="radio"
                             name="cat"
                             value="life"
-                            onChange={(e) => setCat(e.target.value)}
+                            onChange={handleCate}
                         />
                         <label htmlFor="life">Life</label>
                     </div>
@@ -135,7 +147,7 @@ const Write = () => {
                             type="radio"
                             name="cat"
                             value="work"
-                            onChange={(e) => setCat(e.target.value)}
+                            onChange={handleCate}
                         />
                         <label htmlFor="work">Work</label>
                     </div>
@@ -146,7 +158,7 @@ const Write = () => {
                             type="radio"
                             name="cat"
                             value="love"
-                            onChange={(e) => setCat(e.target.value)}
+                            onChange={handleCate}
                         />
                         <label htmlFor="love">Love</label>
                     </div>
@@ -157,7 +169,7 @@ const Write = () => {
                             type="radio"
                             name="cat"
                             value="study"
-                            onChange={(e) => setCat(e.target.value)}
+                            onChange={handleCate}
                         />
                         <label htmlFor="study">Study</label>
                     </div>
@@ -168,7 +180,7 @@ const Write = () => {
                             type="radio"
                             name="cat"
                             value="sad"
-                            onChange={(e) => setCat(e.target.value)}
+                            onChange={handleCate}
                         />
                         <label htmlFor="sad">Sad</label>
                     </div>

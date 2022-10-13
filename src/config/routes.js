@@ -5,6 +5,7 @@ const routes = {
     search: '/search',
     single: '/post/:id',
     write: '/write',
+    notFound: '*',
 };
 
 export default routes;
