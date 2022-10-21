@@ -13,7 +13,7 @@ const cx = classNames.bind(styles);
 
 const Login = () => {
     const [inputs, setInputs] = useState({
-        username: '',
+        email: '',
         password: '',
     });
     const [error, setError] = useState(null);
@@ -49,7 +49,7 @@ const Login = () => {
                             type="text"
                             required
                             placeholder="Username"
-                            name="username"
+                            name="email"
                         />
                     </div>
                     <div className={cx('row')}>

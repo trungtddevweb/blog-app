@@ -15,6 +15,7 @@ const cx = classNames.bind(styles);
 
 const Header = () => {
     const { currentUser, logout } = useContext(AuthContext);
+    const { username, image } = currentUser.details;
     const navigate = useNavigate();
     const handleLogout = async () => {
         await logout();
@@ -73,12 +74,8 @@ const Header = () => {
                             )}
                         >
                             <div className={cx('item', { currentUser })}>
-                                <img
-                                    alt={currentUser.username}
-                                    className={cx('avt')}
-                                    src={'https://i.pinimg.com/564x/61/10/f0/6110f0d1c68fc446d9d7210c82caa9c6.jpg'}
-                                />
-                                <span>{currentUser.username}</span>
+                                <img alt={username} className={cx('avt')} src={image ? image : ''} />
+                                <span>{username}</span>
                             </div>
                         </Tippy>
                     ) : (

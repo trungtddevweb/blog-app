@@ -10,6 +10,10 @@ export const get = async (path, option = {}) => {
     return response.data;
 };
 
+// export const regiser = async (path, payload) => {
+//     await axios.post(path, payload);
+// };
+
 // POST
 // export const post = async (path, option = {}) => {
 //     const res = await httpRequest.post(path, option);

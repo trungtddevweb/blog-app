@@ -75,15 +75,14 @@
 }
 
 .btn-login {
-    background-color: var(--white);
+    background-color: var(--main-color);
     font-weight: 500;
     font-size: 1.2rem;
-    color: var(--main-color);
+    color: var(--white);
     transition: all ease-in-out .3s;
 
     &:hover {
-        color: var(--white);
-        background-color: var(--main-color);
+        opacity: 0.8;
     }
 }
 
@@ -97,7 +96,38 @@
 
 }
 
+// Choose image
+.choose-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.signup-profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid gray;
+    object-fit: cover;
+}
+
+.image-upload-label {
+    position: relative;
+
+}
+
+.add-picture-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    color: green;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    z-index: 99;
+    top: 20px;
+    right: 0;
+}
 
 .col {
     width: 50%;

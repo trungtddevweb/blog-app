@@ -15,57 +15,83 @@ const Write = () => {
     const state = useLocation().state;
     const [value, setValue] = useState(state?.desc || '');
     const [title, setTitle] = useState(state?.title || '');
-    const [file, setFile] = useState(null);
     const [cat, setCat] = useState(state?.cate || '');
-
+    const [image, setImage] = useState(null);
+    const [uploadingImg, setUploadingImg] = useState(false);
     const navigate = useNavigate();
+    const [url, setUrl] = useState('');
 
     //Check user
     const { currentUser } = useContext(AuthContext);
+    const { username } = currentUser.details;
+
     useEffect(() => {
         if (!currentUser) return navigate('/login');
     }, [currentUser, navigate]);
 
     // Handle
-    const upload = async () => {
+    const validateImg = (e) => {
+        const file = e.target.files[0];
+        if (file.size > 1048576) {
+            return alert('Max file size is 1mb');
+        } else {
+            setImage(file);
+        }
+    };
+
+    const uploadImage = async () => {
+        const data = new FormData();
+        data.append('file', image);
+        data.append('upload_preset', 'trung02032001');
+
         try {
-            const formData = new FormData();
-            formData.append('file', file);
-            const res = await axios.post('/upload', formData);
-            return res.data;
-        } catch (error) {
-            console.log(error);
+            setUploadingImg(true);
+            let res = await fetch('https://api.cloudinary.com/v1_1/dltqtt0ph/image/upload', {
+                method: 'POST',
+                body: data,
+            });
+            const urlData = await res.json();
+            setUploadingImg(false);
+            return urlData.url;
+        } catch (err) {
+            setUploadingImg(false);
+            console.log(err);
         }
     };
 
     const handleClick = async (e) => {
         e.preventDefault();
-        const imgUrl = await upload();
 
         try {
+            if (!image) return alert('Ảnh bài viết không thể để trống!');
+            const urlImg = await uploadImage(image);
+            setUrl(urlImg);
             state
                 ? await axios.put(`/posts/${state.id}`, {
                       title,
-                      desc: value,
+                      content: value,
                       cat,
-                      img: file ? imgUrl : '',
+                      img: image ? url : '',
+                      author: username,
                   })
                 : await axios.post(`/posts/`, {
                       title,
-                      desc: value,
+                      content: value,
                       cat,
-                      img: file ? imgUrl : '',
+                      img: image ? url : '',
+                      author: username,
                       date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
                   });
             navigate('/');
         } catch (err) {
-            console.log(err);
+            console.log(err.response.data);
         }
     };
     // Handle Category
     const handleCate = (e) => {
         setCat(e.target.value);
     };
+    console.log(currentUser);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('content')}>
@@ -82,19 +108,14 @@ const Write = () => {
             </div>
             <div className={cx('menu')}>
                 <div className={cx('item')}>
-                    <h2 className={cx('heading')}>Đăng bài</h2>
+                    {uploadingImg ? <div>Đang đăng bài...</div> : <h2 className={cx('heading')}>Đăng bài</h2>}
                     <span className={cx('status')}>
                         <b>Trạng thái: </b> Bản nháp
                     </span>
                     <span className={cx('status')}>
                         <b>Visibility: </b> Công khai
                     </span>
-                    <input
-                        className={cx('choose-file')}
-                        onChange={(e) => setFile(e.target.files[0])}
-                        type="file"
-                        id="file"
-                    />
+                    <input className={cx('choose-file')} onChange={validateImg} type="file" id="file" />
                     <label className={cx('text-choose')} htmlFor="file">
                         Chọn hình ảnh
                     </label>

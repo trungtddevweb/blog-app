@@ -61,13 +61,13 @@ const Single = () => {
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
                 <div className={cx('content')}>
-                    <Image className={cx('image')} src={`../upload/${post?.img}`} alt={post.title} />
+                    <Image className={cx('image')} src={post.img} alt={post.title} />
                     <div className={cx('user')}>
                         <div className={cx('section')}>
                             {post.userImg && <Image className={cx('avt')} src={post.userImg} />}
                             <div className={cx('info')}>
                                 <span>{post.username}</span>
-                                <p>Posted {moment(post.date).fromNow()}</p>
+                                <p>Posted {moment(post.createdAt).fromNow()}</p>
                             </div>
                         </div>
                         {currentUser.username === post.username && (
@@ -89,7 +89,7 @@ const Single = () => {
                     <p
                         className={cx('desc')}
                         dangerouslySetInnerHTML={{
-                            __html: DOMPurify.sanitize(post.desc),
+                            __html: DOMPurify.sanitize(post.content),
                         }}
                     ></p>
                 </div>

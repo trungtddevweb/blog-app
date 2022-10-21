@@ -39,7 +39,6 @@ const Home = () => {
         // Check user
         if (!currentUser) return navigate('/login');
     }, [cat, currentUser, navigate]);
-
     // Pagination
     const itemsPerPage = 5;
     const [currentItems, setCurrentItems] = useState([]);
@@ -87,7 +86,7 @@ const Home = () => {
                         ))}
                     <div className={cx('list-post')}>
                         {currentItems.map((post) => (
-                            <div key={post.id} className={cx('post')}>
+                            <div key={post._id} className={cx('post')}>
                                 <Post post={post} />
                             </div>
                         ))}
