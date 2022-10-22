@@ -13,7 +13,7 @@ const Sidebar = ({ cat }) => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const res = await axios.get(`/posts/?cat=${cat}`);
+                const res = await axios.get(`https://memory-app-blog.herokuapp.com/api/posts/?cat=${cat}`);
                 setPosts(res.data);
             } catch (err) {
                 console.log(err);
