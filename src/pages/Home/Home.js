@@ -28,7 +28,7 @@ const Home = () => {
         const fetchPosts = async () => {
             setLoading(true);
             try {
-                const res = await axios.get(`/posts${cat}`);
+                const res = await axios.get(`https://memory-app-blog.herokuapp.com/api/posts${cat}`);
                 setPosts(res.data);
                 setLoading(false);
             } catch (err) {
