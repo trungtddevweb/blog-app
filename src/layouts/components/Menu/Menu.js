@@ -26,8 +26,8 @@ const Sidebar = ({ cat }) => {
             <h1 className={cx('heading')}>Một số bài viết có thể bạn sẽ thích</h1>
 
             {posts.map((post) => (
-                <div key={post.id} className={cx('post')}>
-                    <Image className={cx('img')} src={`../upload/${post?.img}`} alt={post.title} />
+                <div key={post._id} className={cx('post')}>
+                    <Image className={cx('img')} src={post.img} alt={post.title} />
                     <p className={cx('title')}>{post.title}</p>
                     <Button className={cx('btn')}>Đọc ngay</Button>
                 </div>

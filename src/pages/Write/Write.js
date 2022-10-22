@@ -19,11 +19,11 @@ const Write = () => {
     const [image, setImage] = useState(null);
     const [uploadingImg, setUploadingImg] = useState(false);
     const navigate = useNavigate();
-    const [url, setUrl] = useState('');
+    // const [url, setUrl] = useState('');
 
     //Check user
     const { currentUser } = useContext(AuthContext);
-    const { username } = currentUser.details;
+    const { username, email } = currentUser.details;
 
     useEffect(() => {
         if (!currentUser) return navigate('/login');
@@ -65,21 +65,22 @@ const Write = () => {
         try {
             if (!image) return alert('Ảnh bài viết không thể để trống!');
             const urlImg = await uploadImage(image);
-            setUrl(urlImg);
             state
                 ? await axios.put(`/posts/${state.id}`, {
                       title,
                       content: value,
                       cat,
-                      img: image ? url : '',
+                      img: urlImg,
                       author: username,
+                      email,
                   })
                 : await axios.post(`/posts/`, {
                       title,
                       content: value,
                       cat,
-                      img: image ? url : '',
+                      img: urlImg,
                       author: username,
+                      email,
                       date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
                   });
             navigate('/');
@@ -87,11 +88,11 @@ const Write = () => {
             console.log(err.response.data);
         }
     };
+    console.log(state);
     // Handle Category
     const handleCate = (e) => {
         setCat(e.target.value);
     };
-    console.log(currentUser);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('content')}>

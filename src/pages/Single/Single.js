@@ -34,7 +34,6 @@ const Single = () => {
         };
         fetchPosts();
     }, [postId]);
-
     const handleDelete = async () => {
         try {
             await axios.delete(`/posts/${postId}`);
@@ -64,15 +63,17 @@ const Single = () => {
                     <Image className={cx('image')} src={post.img} alt={post.title} />
                     <div className={cx('user')}>
                         <div className={cx('section')}>
-                            {post.userImg && <Image className={cx('avt')} src={post.userImg} />}
+                            {currentUser.details.image && (
+                                <Image className={cx('avt')} src={currentUser.details.image} />
+                            )}
                             <div className={cx('info')}>
-                                <span>{post.username}</span>
+                                <span>{post.author}</span>
                                 <p>Posted {moment(post.createdAt).fromNow()}</p>
                             </div>
                         </div>
-                        {currentUser.username === post.username && (
+                        {currentUser.details.email === post.email && (
                             <div className={cx('section')}>
-                                <Link state={post} to={`/write?edit=2`}>
+                                <Link state={post} to={`/write?edit=${postId}`}>
                                     <FontAwesomeIcon color="blue" className={cx('icon')} icon={faEdit} />
                                 </Link>
 
