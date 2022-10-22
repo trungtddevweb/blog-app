@@ -66,7 +66,7 @@ const Write = () => {
             if (!image) return alert('Ảnh bài viết không thể để trống!');
             const urlImg = await uploadImage(image);
             state
-                ? await axios.put(`/posts/${state.id}`, {
+                ? await axios.put(`https://memory-app-blog.herokuapp.com/api/posts/${state.id}`, {
                       title,
                       content: value,
                       cat,
@@ -74,7 +74,7 @@ const Write = () => {
                       author: username,
                       email,
                   })
-                : await axios.post(`/posts/`, {
+                : await axios.post(`https://memory-app-blog.herokuapp.com/api/posts/`, {
                       title,
                       content: value,
                       cat,
