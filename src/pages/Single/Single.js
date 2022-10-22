@@ -25,7 +25,7 @@ const Single = () => {
         const fetchPosts = async () => {
             setLoading(true);
             try {
-                const res = await axios.get(`https://memory-app-blog.herokuapp.com/api/posts/${postId}`);
+                const res = await axios.get(`/posts/${postId}`);
                 setPost(res.data);
                 setLoading(false);
             } catch (err) {
@@ -36,7 +36,7 @@ const Single = () => {
     }, [postId]);
     const handleDelete = async () => {
         try {
-            await axios.delete(`https://memory-app-blog.herokuapp.com/api/posts/${postId}`);
+            await axios.delete(`/posts/${postId}`);
             navigate('/');
         } catch (error) {
             console.log(error);
