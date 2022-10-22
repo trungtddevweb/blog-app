@@ -21,7 +21,6 @@ const Header = () => {
         await logout();
         navigate('/login');
     };
-    console.log(show);
     return (
         <header className={cx('wrapper')}>
             <div className={cx('container')}>

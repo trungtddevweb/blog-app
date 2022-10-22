@@ -12,6 +12,7 @@ import { AuthContext } from '~/context/authContext';
 const cx = classNames.bind(styles);
 
 const Login = () => {
+    const [loading, setLoading] = useState(false);
     const [inputs, setInputs] = useState({
         email: '',
         password: '',
@@ -25,8 +26,10 @@ const Login = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         try {
             await login(inputs);
+            setLoading(false);
             navigate('/');
         } catch (error) {
             setError(error.response.data);
@@ -48,7 +51,7 @@ const Login = () => {
                             className={cx('input')}
                             type="text"
                             required
-                            placeholder="Username"
+                            placeholder="Email"
                             name="email"
                         />
                     </div>
@@ -67,7 +70,7 @@ const Login = () => {
                     </div>
                     <p className={cx('text')}>Quên mật khẩu?</p>
                     <Button className={cx('btn-login')} onClick={handleSubmit}>
-                        Đăng nhập
+                        {loading ? <>Đang đăng nhập...</> : <>Đăng nhập</>}
                     </Button>
                     <p className={cx('text-with')}>Hoặc đăng nhập với</p>
                     <div className={cx('social-login')}>

@@ -36,7 +36,7 @@ const Single = () => {
     }, [postId]);
     const handleDelete = async () => {
         try {
-            await axios.delete(`/posts/${postId}`);
+            await axios.delete(`https://memory-app-blog.herokuapp.com/api/posts/${postId}`);
             navigate('/');
         } catch (error) {
             console.log(error);
