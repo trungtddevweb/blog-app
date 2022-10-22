@@ -7,19 +7,21 @@ import { Link, useNavigate } from 'react-router-dom';
 import Tippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import { useContext } from 'react';
+import { faBars, faRightFromBracket, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { useContext, useState } from 'react';
 import { AuthContext } from '~/context/authContext';
 
 const cx = classNames.bind(styles);
 
 const Header = () => {
     const { currentUser, logout } = useContext(AuthContext);
+    const [show, setShow] = useState(false);
     const navigate = useNavigate();
     const handleLogout = async () => {
         await logout();
         navigate('/login');
     };
+    console.log(show);
     return (
         <header className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -28,28 +30,41 @@ const Header = () => {
                         <img className={cx('img')} src={imgs.logo} alt="Memory" />
                     </Link>
                 </div>
-                <nav className={cx('navigation')}>
-                    <div className={cx('item')}>
-                        <Button to={`/?cat=art`}>ART</Button>
-                    </div>
-                    <div className={cx('item')}>
-                        <Button to={`/?cat=music`}>MUSIC</Button>
-                    </div>
-                    <div className={cx('item')}>
-                        <Button to={`/?cat=life`}>LIFE</Button>
-                    </div>
-                    <div className={cx('item')}>
-                        <Button to={`/?cat=work`}>WORK</Button>
-                    </div>
-                    <div className={cx('item')}>
-                        <Button to={`/?cat=love`}>LOVE</Button>
-                    </div>
-                    <div className={cx('item')}>
-                        <Button to={`/?cat=study`}>STUDY</Button>
-                    </div>
-                    <div className={cx('item')}>
-                        <Button to={`/?cat=sad`}>SAD</Button>
-                    </div>
+                {!show ? (
+                    <FontAwesomeIcon
+                        onClick={(prev) => setShow((prev) => !prev)}
+                        className={cx('btn-show')}
+                        icon={faBars}
+                    />
+                ) : (
+                    <FontAwesomeIcon
+                        onClick={(prev) => setShow((prev) => !prev)}
+                        className={cx('btn-show')}
+                        icon={faXmark}
+                    />
+                )}
+                <nav className={cx('navigation', { show })}>
+                    <Link to={`/?cat=art`}>
+                        <div className={cx('item')}>ART</div>
+                    </Link>
+                    <Link to={`/?cat=music`}>
+                        <div className={cx('item')}>MUSIC</div>
+                    </Link>
+                    <Link to={`/?cat=life`}>
+                        <div className={cx('item')}>LIFE</div>
+                    </Link>
+                    <Link to={`/?cat=work`}>
+                        <div className={cx('item')}>WORK</div>
+                    </Link>
+                    <Link to={`/?cat=love`}>
+                        <div className={cx('item')}>LOVE</div>
+                    </Link>
+                    <Link to={`/?cat=study`}>
+                        <div className={cx('item')}>STUDY</div>
+                    </Link>
+                    <Link to={`/?cat=sad`}>
+                        <div className={cx('item')}>SAD</div>
+                    </Link>
                     {currentUser ? (
                         <Tippy
                             interactive

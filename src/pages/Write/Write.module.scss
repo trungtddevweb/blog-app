@@ -119,3 +119,26 @@
     }
 
 }
+
+
+// Responsive
+@media only screen and (max-width: 480px) {
+    .wrapper {
+        display: flex;
+        height: auto;
+        gap: 20px;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-bottom: 20px;
+    }
+
+
+    .buttons {
+        gap: 10px;
+    }
+}

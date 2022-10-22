@@ -125,3 +125,41 @@
 .next-link {
     cursor: pointer;
 }
+
+// Responsive
+@media only screen and (max-width: 480px) {
+    .title {
+        font-size: 1rem;
+
+        span {
+            font-size: 0.9rem;
+        }
+    }
+
+    .list-post {
+        padding: 0 10px;
+    }
+
+    .post {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+
+        &:nth-child(2n+1) {
+            flex-direction: column;
+        }
+    }
+
+
+    .paginate {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        font-size: 1rem;
+        margin-bottom: 20px;
+        color: var(--black);
+
+    }
+}

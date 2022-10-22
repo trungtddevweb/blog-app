@@ -73,11 +73,7 @@
     border-bottom: 1px solid #000;
 }
 
-.content-text {
-    font-size: var(--fz-normal);
-    text-align: justify;
-    line-height: 2rem;
-}
+
 
 // Animation
 
@@ -173,4 +169,22 @@
 
 .ldio-be45kgc28r4 div {
     box-sizing: content-box;
+}
+
+// Responsive
+@media only screen and (max-width: 480px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .desc {
+        font-size: 1.2rem;
+        margin-bottom: 0;
+        padding-bottom: 20px;
+        border-bottom: 1px solid gray;
+
+    }
+
+
 }

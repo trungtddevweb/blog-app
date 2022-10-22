@@ -86,3 +86,19 @@
         background-color: var(--main-color);
     }
 }
+
+// Responsive
+@media only screen and (max-width: 480px) {
+    .img {
+        flex: 1;
+        max-width: 100%;
+    }
+
+    .content {
+        flex: 1;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

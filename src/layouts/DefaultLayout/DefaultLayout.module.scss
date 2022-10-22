@@ -2,3 +2,11 @@
     width: var(--default-layout-width);
     margin: auto;
 }
+
+
+// Reponsive
+@media only screen and (max-width: 480px) {
+    .wrapper {
+        width: 100%;
+    }
+}

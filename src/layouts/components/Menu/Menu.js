@@ -29,7 +29,9 @@ const Sidebar = ({ cat }) => {
                 <div key={post._id} className={cx('post')}>
                     <Image className={cx('img')} src={post.img} alt={post.title} />
                     <p className={cx('title')}>{post.title}</p>
-                    <Button className={cx('btn')}>Đọc ngay</Button>
+                    <Button className={cx('btn')} to={`/post/${post._id}`}>
+                        Đọc ngay
+                    </Button>
                 </div>
             ))}
         </div>

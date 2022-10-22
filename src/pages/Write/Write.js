@@ -88,7 +88,6 @@ const Write = () => {
             console.log(err.response.data);
         }
     };
-    console.log(state);
     // Handle Category
     const handleCate = (e) => {
         setCat(e.target.value);

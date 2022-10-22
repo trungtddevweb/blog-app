@@ -13,7 +13,9 @@ const cx = classNames.bind(styles);
 const Post = ({ post }) => {
     return (
         <>
-            <Image src={post.img} alt={post.title} className={cx('img')} />
+            <div className={cx('img-wrapper')}>
+                <Image src={post.img} alt={post.title} className={cx('img')} />
+            </div>
             <div className={cx('content')}>
                 <h3 className={cx('heading')}>{post.title}</h3>
                 <p className={cx('desc')}>{getText(post.content)}</p>
