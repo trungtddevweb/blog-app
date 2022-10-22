@@ -64,7 +64,12 @@ const Register = () => {
             if (!image) return alert('Please upload your profile picture');
             const url = await uploadImage(image);
             // setUrl(url);
-            await axios.post('auth/register', { email, username, password, image: url });
+            await axios.post('https://memory-app-blog.herokuapp.com/api/auth/register', {
+                email,
+                username,
+                password,
+                image: url,
+            });
             navigate('/login');
         } catch (err) {
             setError(err.response.data);
